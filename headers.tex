@@ -1,0 +1,159 @@
+\usepackage[utf8]{inputenc}
+\usepackage{proof}
+\usepackage{amsmath,amssymb, color, tikz}
+\usepackage{fullpage}
+\usepackage[pdf]{pstricks}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{algorithmic}
+\usepackage{todonotes}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage{stmaryrd}
+\usepackage{booktabs}
+\usepackage{float}
+% \usepackage{thmtools} 
+\usepackage{thm-restate}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\newcommand{\haitian}[1]{\textcolor{teal}{Haitian: #1}}
+\newcommand{\malvin}[1]{\textcolor{blue}{Malvin: #1}}
+\newcommand{\avijeet}[1]{\textcolor{olive}{Avijeet: #1}}
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+    natbib=true,
+    url=true,
+    maxcitenames=3,
+    maxbibnames=9,
+    abbreviate=false,
+    eprint=false,
+    doi=true
+]{biblatex}
+\DeclareFieldFormat{url}{\url{#1}}
+\DeclareFieldFormat{doi}{\url{https://doi.org/#1}}
+\addbibresource{refs.bib}
+
+\newcommand{\Decide}{\mathsf{Decide}}
+\newcommand{\DecidePSPACE}{\mathsf{DecidePSPACE}}
+\newcommand{\PSPACEReach}{\mathsf{PSPACEReach}}
+\newcommand{\CreateDelta}{\mathsf{CreateDelta}}
+\newcommand{\StringRepresent}{\mathsf{StringRepresent}}
+\newcommand{\StoreStrings}{\mathsf{StoreStrings}}
+\newcommand{\ResidueByLetter}{\mathsf{ResidueByLetter}}
+\newcommand{\ResidueByWord}{\mathsf{ResidueByWord}}
+\newcommand{\AuxOut}{\mathsf{AuxOut}}
+\newcommand{\Residue}{\mathsf{Residue}}
+\newcommand{\GetSet}{\mathsf{GetSet}}
+\newcommand{\TRUE}{$\mathsf{TRUE}$ }
+\newcommand{\NO}{$\mathsf{FALSE}$ }
+
+\newcommand\ldiaarg[1]{\langle#1\rangle}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+\newcommand{\hatK}{\widehat{K}}
+
+\newcommand{\POL}{\mathsf{POL}}
+\newcommand{\pPOL}{\mathsf{P-POL}}
+\newcommand{\PAL}{\mathsf{PAL}}
+\newcommand{\DEL}{\mathsf{DEL}}
+\newcommand{\Ag}{\mathsf{I}}
+
+\newcommand{\EPL}{\mathsf{EPL}}
+\newcommand{\reach}{\mathsf{PSPACEReach}}
+\newcommand{\GetSetNP}{\mathsf{GetSetNP}}
+\newcommand{\Tr}{\mathsf{true}}
+\newcommand{\Fa}{\mathsf{false}}
+\newcommand{\tr}{\mathsf{tr}}
+\newcommand{\starfree}{\mathsf{Star\mbox{-}Free}}
+\newcommand{\word}{\mathsf{Word}}
+\newcommand{\wPOLn}{\mathsf{wPOL_n}}
+\newcommand{\existential}{\mathsf{Existential}}
+\newcommand{\PSPACE}{\mathsf{PSPACE}}
+\newcommand{\NPSPACE}{\mathsf{NPSPACE}}
+\newcommand{\PTime}{\mathsf{P}}
+\newcommand{\NP}{\mathsf{NP}}
+\newcommand{\PTIME}{\mathsf{PTIME}}
+\newcommand{\automaton}{\mathcal A}
+\newcommand{\modelM}{\mathcal M}
+\newcommand{\languageof}[1]{L({#1})}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\suchthat}{\mid}
+\newcommand{\union}{\cup}
+\newcommand{\Union}{\bigcup}
+\newcommand{\regdiv}{\ensuremath{\backslash}}
+
+\newcommand{\outof}{\mathsf{outof}}
+\newcommand{\goto}{\mathsf{goto}}
+\newcommand{\change}{\mathsf{change}}
+
+\DeclareMathOperator*{\bigsem}{;}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{notation}[theorem]{Notation}
+
+% Two part definition
+\newcommand{\twopartdef}[4]{
+  \left\{
+    \begin{array}{ll}
+      #1 & #2 \\
+      #3 & #4
+    \end{array}
+  \right.
+}
+
+\newcommand{\N}{\ensuremath{\mathcal{N}}} % MG: What is this used for?
+
+\newcommand{\F}{\ensuremath{\mathcal{F}}} % knowledge or belief structure
+\newcommand{\X}{\ensuremath{\mathcal{X}}} % transformer
+
+
+% \newcommand{\Tr}{\mathsf{true}}
+% \newcommand{\Fa}{\mathsf{false}}
+\newcommand{\chk}{\mathsf{check}}
+\newcommand{\chkdel}{\mathsf{checkDEL}}
+\newcommand{\chkfcdel}{\mathsf{chkfcDEL}}
+\newcommand{\chkfcdelK}{\mathsf{checkDELK}}
+\renewcommand{\phi}{\varphi}
+
+\tikzstyle{rectNode} = [rectangle, text centered, draw = black]
+\tikzstyle{fastate} = [circle, text centered, draw = black]
+\tikzstyle{dots} = [circle, draw = black, fill = black, inner sep=1pt]

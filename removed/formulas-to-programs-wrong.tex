@@ -1,0 +1,25 @@
+\subsection{From Boolean Formulas to Mental Programs}
+
+A small example would be how observable variables are interpreted in mental programs as demonstrated in the table in section 4.
+
+\malvin{This translation is wrong, see counter-example below.}
+Given a Knowledge Structure $\ldiaarg{V, \theta, O}$, the corresponding mental program succinct Kripke model can be represented as:
+$$
+\pi_a = \bigcap_{p\in O_a}((p?;p\leftarrow\top)\union(\neg p?;p\leftarrow\bot))
+$$
+
+Note that this is unlike what is presented in \cite{GatSymSucShifts2020}, where the mental program can blow up when there is more than one letter observable by an agent.
+
+Counter-Example
+
+$V = \{p,q\}$
+
+$O_a = \{q\}$
+
+Then we have $R_a \{q,p\} \{q\}$.
+
+Now $\pi_a$ from above would be $(q?;q\leftarrow\top)\union(\neg q?;q\leftarrow\bot))$.
+
+If we execute $q \leftarrow \top$ in $\{q,p\}$ then we also only reach the state $\{q,p\}$ and not $\{q\}$.
+
+Another way to write this: $\llbracket q \leftarrow \top \rrbracket ( \{q,p\}) = \{ \{ q, p \} \}$.

@@ -1,0 +1,157 @@
+\section{From Mental Programs to Automata}
+
+\malvin{Move this to another file for now, not include in conference version, but keep for later.}
+
+In this section we explore representing Mental programs using finite automaton structures. Going by the syntax and semantics of mental programs, it is natural to define a translation where the assignment operators and the tests consist of alphabet.
+
+\noindent{\bf Naive idea}: initial state, actions like $p \leftarrow \top$ are actions/edges, etc.
+
+Given that we have no $\ast$ the result is a cycle-free automata.
+
+TODO: Gregor mentioned an article that translations between regular expressions and automate can never avoid blow-ups in either direction.
+\url{https://doi.org/10.1016/j.jcss.2006.11.002}
+
+DFA counter example, QUESTION: can this be translated to mental programs?
+
+\url{https://cs.stackexchange.com/questions/144994/size-of-minimal-dfa}
+
+Note from 2024-04-10: The blow ups rely on Kleene star, so we probably do not have them when translating our (star-free) mental to automata.
+
+(If this works, it would show that one cannot do better than the translation with blow-up we give here.)
+
+
+The basic idea is we given a Mental program $\pi$, we translate it into a finite automata like structure where the state of the automata represent valuation over $V$ and the transitions are labelled with proposition assignment or test. Note that this might appear as given some $V$, the alphabet size itself becomes $2^{2^V}$. But since we want to provide automata for a given mental program $\pi$, number of tests in $\pi$ is at most $|\pi|$ and the automata corresponding to it has at most $|\pi|$ many tests.
+
+Before moving on to the formal translation, we show a construction of intersection of NFA. Note that, NFA is closed under union and complementation. Since complementation requires NFA to be converted to DFA, hence evaluation intersection by union can result in an exponential blow-up. As a result, in the next subsection, we provide a construction of intersection of two NFA using product construction.
+\subsection{NFA Cross-Product}
+\begin{defi}\label{defi:nfaintersect}
+    Given two NFAs $\N_1 = \ldiaarg{Q_1, \Sigma, q^0_1, \delta_1, F_1}$ and $\N_2 = \ldiaarg{Q_2, \Sigma, q^0_2, \delta_2, F_2}$, define $Int(\N_1, \N_2) = \ldiaarg{Q, \Sigma, q^0, \delta, F}$ as
+    \begin{itemize}
+        \item $Q = Q_1\times Q_2$
+        \item $q^0 = (q^0_1, q^0_2)$
+        \item $$\delta((q_1, q_2), a) = \{(q'_1, q'_2)\mid q'_1\in\delta_1(q_1, a), q'_2\in\delta_2(q_2, a)\}$$ for any $a\in\Sigma$ and
+
+        $$
+        \delta((q_1, q_2), \epsilon) = \{(q'_1, q'_2)\mid q'_1\in\delta_1(q_1, \epsilon)\cup\{q_1\}, q'_2\in\delta_2(q_2, \epsilon)\cup\{q_2\}\}
+        $$
+
+        \item $F = F_1\times F_2$
+    \end{itemize}
+\end{defi}
+
+\begin{theorem}
+    Given two NFAs $\N_1$ and $\N_2$, for any $w\in\Sigma^\star$, $w\in\LL(\N_1)\cap\LL(\N_2)$ iff $w\in\LL(Int(\N_1,\N_2))$
+\end{theorem}
+
+Few Issues while translating this whole NFA for regex to mental programs two things remain to be taken care of now:
+What about transitions with verification in cross-product?\\
+Somewhere it is to be taken care of in the construction from mental program to NFA that epsilon transition is between same valuation
+
+% \subsection{Labelled Transition to BDD}
+% \begin{defi}
+%     Given a transiton $s\xrightarrow{a}t$ where $s, t\subseteq V$
+% \end{defi}
+\newcommand{\nfa}{\ensuremath{\mathrm{nfa}}}
+\subsection{Mental Program NFA}
+
+\textbf{Objective:}
+Find a translation $NFA(\cdot)$ such that: for all $\pi$,
+$s \xrightarrow{\pi}t $ iff $NFA(\pi)$ has start state $s$ and final $t$ and $t$ is reachable from $s$.
+\malvin{Can we generalise this to allow other states? see below!}
+
+We define translation from Mental programs to NFA structure. The translations are trivial for every operations (to be formalised later), except for intersection, which we define here.
+
+The basic idea on the intersection is as definition~\ref{defi:nfaintersect}. However, we need to take care of few intricacies such as $\epsilon$ and test ($\beta?$) transitions.
+
+\subsection{A Direct (Exponential) Translation}
+For this translation, we introduce an extra syntax for Mental program $\pi$, which is $\epsilon$.
+% \malvin{Define it how? I suggest $\epsilon := ?\top$}
+This ensures that the initial and final state is equal, that is, for any $s,t\subseteq V$,
+$$
+s\xrightarrow{\epsilon} t\mbox{ iff } s \xrightarrow{?\top} t
+$$
+Now we give the translation:
+\begin{defi}
+    Given the set of propositions $V$ and a mental program $\pi$, we define the automata $NFA(\pi) = \ldiaarg{Q = 2^V, \Sigma, 2^V, \delta, F\subseteq Q}$. Here we use the alphabet
+    $\Sigma = \{\epsilon\}\cup\{p\leftarrow\top\}_{p\in V}\cup\{p\leftarrow\bot\}_{p\in V}\cup\{\beta?\}_{\beta?\in\pi}$, $\delta\subseteq Q\times\Sigma\times 2^Q$.
+    Moreover, we define $\delta$ and $F$ by recursion on $\pi$ as follows.
+    \begin{itemize}
+        \item $NFA(\epsilon)$ is such that $(s,a\in\Sigma,\{t\})\in\delta$ iff $a = \epsilon$, $F = Q$ and $s = t$.
+
+        \item $NFA(p\leftarrow\top)$  is such that ($t\in F$ iff $p\in t$) and (for any $s\subseteq V, (s, a\in\Sigma, F'\subseteq F)\in \delta$ iff $a = p\leftarrow\top$ and $t = s\cup\{p\}$ for all $t\in F'$).
+
+        \item $NFA(p\leftarrow\bot)$  is such that ($t\in F$ iff $p\notin t$) and (for any $s\subseteq V, (s, a\in\Sigma, F'\subseteq F)\in \delta$ iff $a = p\leftarrow\bot$ and $t = s\setminus\{p\}$ for all $t\in F'$).
+
+        \item $NFA(\beta?)$ is such that ($t\in F$ iff $t\vDash\beta$) and  ($(s, a\in\Sigma, \{t\})\in\delta$ iff $s = t$ and $s\vDash\beta$).
+
+        \item $NFA(\pi_1 + \pi_2)$: Let $NFA(\pi_1) = \ldiaarg{Q_1, \Sigma, V, \delta_1, F_1}$ and $NFA(\pi_2) = \ldiaarg{Q_2, \Sigma, V, \delta_2, F_2}$. $\delta = \delta_1\cup\delta_2\cup\{(s,\epsilon,\{t_1, t_2\})\}_{s\in Q, t_1\in Q_1, t_2\in Q_2, s = t_1 = t_2}$, $F = F_!\cup F_2$
+
+        \item $NFA(\pi_1;\pi_2)$: Let $NFA(\pi_1) = \ldiaarg{Q_1, \Sigma, V, \delta_1, F_1}$ and $NFA(\pi_2) = \ldiaarg{Q_2, \Sigma, V, \delta_2, F_2}$. $\delta = \delta_1\cup\delta_2\cup\{(s,\epsilon,\{t\})\}_{s\in F_1, t\in Q_2, s = t}$ and $F = F_2$
+
+        \item $NFA(\pi_1\cap\pi_2)$: Let $NFA(\pi_1) = \ldiaarg{Q_1, \Sigma, V, \delta_1, F_1}$ and $NFA(\pi_2) = \ldiaarg{Q_2, \Sigma, V, \delta_2, F_2}$. Same construction as definition~\ref{defi:nfaintersect}, with $(s, s)\in Q$.
+    \end{itemize}
+\end{defi}
+
+\malvin{Note that the above definition is compositional, but not fully. That is, $Q$ is fixed but only $\delta$ and $F$ are defined recursively.}
+
+As can be seen, in the worst case the state space of $NFA(\pi)$ is exponential in the number of variables $|V|$ and also in the length of the program $\pi$
+\malvin{TODO: give example of a fixed $\pi$ here for this?
+Also, it is not only in the worst case, but the state space of the automata is always the same $2^V$ here, right?}
+
+This raises the question whether there is a better translation.
+
+\subsection{Better (Compositional) Translations?}
+
+We could try to map MP to automata could yield smaller automata by using a single automata state to represent different worlds (i.e. different subsets of V).
+That translation would also be more compositional in a sense.
+
+For this we also need a \textbf{New Objective:}
+Find a translation $NFA(\cdot)$ and a function $f$ mapping $V$-states to sets of automata states
+such that for all $\pi$,
+$s \xrightarrow{\pi} t$ iff
+in $NFA(\pi)$ there is a state in $f(s)$ from which we can reach a state in $f(t)$.
+
+\malvin{NEXT QUESTION HERE: Note that this new objective is very liberal. In particular it does not fix the input alphabet of the automata!}
+
+For example, translate $p \leftarrow \top$ to a two state automata where the first state is labelled with $\varnothing$ standing for all worlds, has one transition labelled with $p \leftarrow \top$ to the second state labelled with $\{(p, \top)\}$ representing all worlds where $p$ is true.
+
+However, when composing NFA from different (sub)programs we then may need to ``refine'' the states depending on which propositions are modified where, and which ones are tested for.
+
+\malvin{TODO for myself: add details about this, like correctness definition etc ...}
+
+\smallskip
+
+Even more ``cheating'', we could have a very ad-hoc translation that does better on one particular (e.g.\ the total) mental program, resulting in a single state automata.
+Hence, there is no fixed mental that all translations necessarily have to map to a large automata.
+
+\subsection{Minimum Bound}
+
+\textbf{An interesting result to prove (Lower bound)}: For any translation of Mental Programs to Automata even with non-determinism will have at least exponential blow-up.
+
+MG, trying to say this more formally:
+For any translation from MP to Automata, there exists a mental program such that the resulting automata is larger.
+
+More precise/general attempt:
+For any translation $NFA(\cdot)$ from MP to Automata and for any FOL statement $\phi$ such that ``$s \xrightarrow{\pi} t$ iff $\phi(NFA(\pi))$'' to state the correctness, there exists a mental program $\pi$ such that $NFA(\pi)$ is large (= exponential in the number of variables? or exponential in the size of the mental program?).
+
+(Alternative to FOL formula: map from Kripke states to automata states that need not be injective.)
+
+Variants:
+
+- are translations all (possibly noncomputable) functions or do we assume an algorithm?
+
+- we do not know what the translation does, but maybe we can assume it is compositional?
+
+\malvin{Here is the information-theoretic argument:}
+Given a vocabulary such that $|V| = n$ we have $2^n$ many states.
+Relations over those states are $R \subseteq V \times V$, and therefore the number of different relations is $2^{2^n \cdot 2^n}$.
+In order to be useful, any translation mapping mental programs to automata must not map two mental programs that encode different relations to the same automata.
+Hence the image of the translation must have at least size $2^{2^n \cdot 2^n}$, i.e. there must be that many different automata.
+
+\malvin{Now, what known results are there of the form ``there are only X many different automata up to size N''? (For this I assume we need to fix the input language, which is tricky because that depends on $n$ here.)}
+
+\bigskip
+
+\malvin{Comment from Gregor: } this ignores the size of the mental program --- if it is already large, then the automata is allowed to be large.
+
+Hence we need more than just any relation that forces a large automata: a relation for which the mental program is small but the automata has to be large.

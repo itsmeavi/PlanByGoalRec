@@ -1,0 +1,75 @@
+\documentclass{article}
+\input{headers.tex}
+
+\title{Logic for Planning by Goal Recognition}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+% LORI: March 10 \url{http://www.golori.org/lori2025}
+% LIMIT: 12 pages + 1 page references
+
+% \bigskip
+\section{Working Example}
+Consider two robots $1, 2$ in a warehouse. There are three rooms in the warehouse $A, B, C$, all of them attached to a common hall. One can only enter every other room via the common hall. 
+
+Initially, both the robots are in room $C$ with two boxes $B_1, B_2$ in the same room. The goal is to either put both the boxes in room $A$ or $B$.
+
+\section{Modelling}
+\begin{definition}
+    The static knowledge model is based on the usual Kripke model. Let us call it the goal model $\M = \ldiaarg{W, \{\sim_i\}_{i\in\Ag}, V, Exp}$ such that:
+    \begin{itemize}
+        \item $W$ is the set of possible worlds
+        \item $\sim_i$ is the indistinguishability of agents among goals
+        \item $V: W\rightarrow 2^\cP$ is the propositional valuation of the possible worlds.
+        \item $Exp: W\times \Ag\rightarrow Reg_{\Sigma}$ is the private expectation. $Exp(w, i)$ is a regular expression interpreting what $i$ expects to observe.
+    \end{itemize}
+\end{definition}
+% We consider the following knowledge model of the example in section 1. 
+\begin{tikzpicture}
+    \centering
+    \node[rectNode] (g1) {$B_{1C}, B_{2C}$};
+    \node[rectNode] (g2) at (5, 0) {$B_{1C}, B_{2C}$};
+
+    \node[left = 0mm of g1] {$G_A$};
+    \node[right = 0mm of g2] {$G_B$};
+    \node[below = 0mm of g1] (fexp) {\small$1: (b11a;b22a) + (b21a;b12a)$};
+    \node[below = 0mm of fexp] {\small$2: (b11a;b22a) + (b21a;b12a)$};
+    \node[below = 0mm of g2] (fexp2) {\small$1: (b11b;b22b) + (b21b;b12b)$};
+    \node[below = 0mm of fexp2] {\small$2: (b11b;b22b) + (b21b;b12b)$};
+
+    \draw (g1) edge node[above] {$1, 2$} (g2);
+\end{tikzpicture}
+\subsection{Action model}
+\begin{tikzpicture}
+    \node[rectNode] (b11a) {$\ldiaarg{B_{1C}, B_{1A}}$};
+    \node[rectNode] (b11b) at (4,0) {$\ldiaarg{B_{1C}, B_{1B}}$};
+    \node[left = 0mm of b11a] {$b11a$};
+    \node[right = 0mm of b11b] {$b11b$};
+
+    \node[rectNode] (b21a) at (0,-1) {$\ldiaarg{B_{2C}, B_{2A}}$};
+    \node[rectNode] (b21b) at (4,-1) {$\ldiaarg{B_{2C}, B_{2B}}$};
+    \node[left = 0mm of b21a] {$b21a$};
+    \node[right = 0mm of b21b] {$b21b$};
+
+    \node[rectNode] (b12a) at (0,-2) {$\ldiaarg{B_{1C}, B_{1A}}$};
+    \node[rectNode] (b12b) at (4,-2) {$\ldiaarg{B_{1C}, B_{1B}}$};
+    \node[left = 0mm of b12a] {$b12a$};
+    \node[right = 0mm of b12b] {$b12b$};
+
+    \node[rectNode] (b22a) at (0,-3){$\ldiaarg{B_{2C}, B_{2A}}$};
+    \node[rectNode] (b22b) at (4,-3) {$\ldiaarg{B_{2C}, B_{2B}}$};
+    \node[left = 0mm of b22a] {$b22a$};
+    \node[right = 0mm of b22b] {$b22b$};
+
+
+    \draw (b11a) edge node[above] {$2$} (b11b);
+    \draw (b21a) edge node[above] {$2$} (b21b);
+    \draw (b12a) edge node[above] {$1$} (b12b);
+    \draw (b22a) edge node[above] {$1$} (b22b);
+\end{tikzpicture}
+\end{document}
+
+

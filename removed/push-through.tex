@@ -1,0 +1,25 @@
+
+
+
+The following definition provides a rewriting of modal formulas, essentially giving us reduction axioms for $K_i$ mental program operators.
+
+\begin{defi}[Push-through]
+\malvin{WRONG / NOT USEFUL for DEL. This works for MP and Boolean formulas but will not work for announcements before and after the K operator, I think.}
+
+For each intersection-free mental program $\pi$ and Boolean formula $\phi$ we define:
+
+\href{https://github.com/m4lvin/SucExpModelCheckers/blob/9c5bc0044b33ff4ce96417d493793bfbab2b258a/src/SucModelChecker.hs#L178}{\malvin{Click here for Haskell def, order of cases here still to be fixed.}}
+
+\[
+  \begin{array}{lcl} %
+    {}[ p \leftarrow \top ] q     & := & \text{if $p=q$ then $\top$ else $q$} \\
+    {}[ p \leftarrow \bot ] q     & := & \text{if $p=q$ then $\bot$ else $q$} \\
+    {}[\pi] (\phi_1 \land \phi_2) & := & [\pi] \phi_1 \land [\pi] \phi_2      \\
+    {}[\pi_1;\pi_2] \phi          & := & [\pi_1] [\pi_2] \phi                 \\
+    {}[?\tau] \phi                & := & \tau \to \phi                       \\
+    {}[\pi_1 \cup \pi_2] \phi     & := & [\pi_1] \phi \land [\pi_2] \phi      \\
+    {}[\pi_1 \cap \pi_2] \phi     & := & ???? \\
+  \end{array}
+\]
+\end{defi}
+NOTE: This is bad / not in PSPACE because for example it creates of copies $\phi$ in the last case.

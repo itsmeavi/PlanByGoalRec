@@ -1,0 +1,26 @@
+\[
+  \mathsf{bla} := \twopartdef{5}{\text{if it is sunny}}{7}{\text{otherwise}}
+\]
+
+
+\malvin{I use $V$ instead of $\cP$. (Because $\mathcal{P}$ always reads as powerset for me and because $\cP'$ looks funny. In general, I like to think of $V$ as not global/unique but as a finite set depending on the particular domain/example/model.)}
+
+
+
+
+\begin{align*}
+    % \mathsf{\pi((\bot :: Node), \_)} &:= ? \bot\\
+    \pi((\bot :: Node), \_)  &:= ? \bot\\
+    \pi((\top :: Node), [])  &:= ? \top\\
+    % \pi((\top :: Node), [p_0',p_1',..,p_n'])  &:= (p_0 \leftarrow \top ; \pi(\top,[p_1',..,p_n'])) \union (p_0 \leftarrow \bot ; \pi(\top,[p_1',..,p_n']))\\
+    \pi((\top :: Node), [p_0',p_1',..,p_n'])  &:= ((p_0 \leftarrow \top) \union (p_0 \leftarrow \bot)) ; \pi(\top,[p_1',..,p_n'])\\
+    \pi((\Omega@t_0 \leftarrow (p) \rightarrow t_1),[p_0',..,p_n']) &:=
+      \twopartdef
+      {(?p_0;\pi(t_0,[p_0',..,p_n'])) \union (?\neg p_0;\pi(t_1,[p_0',..,p_n']))}{\text{if } p'= p_0'}
+      {((p_0 \leftarrow \top) \union (p_0 \leftarrow \bot)) ; \pi(\Omega,[p_1',..,p_n']))}{\text{otherwise}}
+    \\
+    % \text{\color{red} Specially, if $t_0=t_1$, then the translation is just} \pi (t_0,[p_0',..,p_n']) \malvin{never happens in Bdd} \\
+    \pi((\Omega@t_0 \leftarrow (p') \rightarrow t_1),[p_0',..,p_n']) :=& \twopartdef
+       {(p_0 \leftarrow \top;\pi(t_0,[p_0',..,p_n'])) \union (p_0 \leftarrow \bot;\pi(t_1,[p_0',..,p_n']))}{\text{if } p' = p_0'}
+       {((p_0 \leftarrow \top) \union (p_0 \leftarrow \bot)) ; \pi(\Omega,[p_1',..,p_n']))}{\text{otherwise}}
+\end{align*}

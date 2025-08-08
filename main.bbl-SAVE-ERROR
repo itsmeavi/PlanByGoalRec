@@ -1,0 +1,665 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{ComplexityDELAucherS13}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=7973daf2b50e3ad978493163fb2cd11f}{%
+           family={Aucher},
+           familyi={A\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+        {{hash=5a76bb7e9fa1dca1edcb1769ee960b74}{%
+           family={Schwarzentruber},
+           familyi={S\bibinitperiod},
+           given={François},
+           giveni={F\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=983908c7c8b677fab7ebb64253dc6fc9}{%
+           family={Schipper},
+           familyi={S\bibinitperiod},
+           given={Burkhard\bibnamedelima C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3976b105535a3f796f5fc98d00ec861}
+      \strng{fullhash}{b3976b105535a3f796f5fc98d00ec861}
+      \strng{bibnamehash}{b3976b105535a3f796f5fc98d00ec861}
+      \strng{authorbibnamehash}{b3976b105535a3f796f5fc98d00ec861}
+      \strng{authornamehash}{b3976b105535a3f796f5fc98d00ec861}
+      \strng{authorfullhash}{b3976b105535a3f796f5fc98d00ec861}
+      \strng{editorbibnamehash}{983908c7c8b677fab7ebb64253dc6fc9}
+      \strng{editornamehash}{983908c7c8b677fab7ebb64253dc6fc9}
+      \strng{editorfullhash}{983908c7c8b677fab7ebb64253dc6fc9}
+      \field{labelalpha}{AS13}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 14th Conference on Theoretical Aspects of Rationality and Knowledge {(TARK} 2013), Chennai, India, January 7-9, 2013}
+      \field{title}{On the Complexity of Dynamic Epistemic Logic}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb http://www.tark.org/proceedings/tark_jan7_13/p19-aucher.pdf
+      \endverb
+      \verb{url}
+      \verb http://www.tark.org/proceedings/tark_jan7_13/p19-aucher.pdf
+      \endverb
+    \endentry
+    \entry{vBEGS215:SymDEL-LORI}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=f255bfca9dfd795ab9b555ed71486b14}{%
+           family={Benthem},
+           familyi={B\bibinitperiod},
+           given={Johan},
+           giveni={J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=9e7292c27370cc8340a3baf9e9a87fff}{%
+           family={Eijck},
+           familyi={E\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=adcf7c9a7403cdc07ea339cb07d2f94e}{%
+           family={Gattinger},
+           familyi={G\bibinitperiod},
+           given={Malvin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9a7c4260836d8a6efef54a1eac4a18a9}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Kaile},
+           giveni={K\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=3150fc26beff5961c3d7654f19810628}{%
+           family={Hoek},
+           familyi={H\bibinitperiod},
+           given={Wiebe},
+           giveni={W\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=04c87bfd8ecfe18294894fa0bf2e20fb}{%
+           family={Holliday},
+           familyi={H\bibinitperiod},
+           given={Wesley\bibnamedelima H.},
+           giveni={W\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=3e85c4a7e5e247265d102811b37768f0}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Wen-fang},
+           giveni={W\bibinithyphendelim f\bibinitperiod}}}%
+      }
+      \strng{namehash}{d4eedbcceea827bd99915a2d3955beb4}
+      \strng{fullhash}{d9dc890317f3c1b9eb2703efbaf6202b}
+      \strng{bibnamehash}{d9dc890317f3c1b9eb2703efbaf6202b}
+      \strng{authorbibnamehash}{d9dc890317f3c1b9eb2703efbaf6202b}
+      \strng{authornamehash}{d4eedbcceea827bd99915a2d3955beb4}
+      \strng{authorfullhash}{d9dc890317f3c1b9eb2703efbaf6202b}
+      \strng{editorbibnamehash}{8dd3a70548a5f11ef206e8757851a6ce}
+      \strng{editornamehash}{8dd3a70548a5f11ef206e8757851a6ce}
+      \strng{editorfullhash}{8dd3a70548a5f11ef206e8757851a6ce}
+      \field{extraname}{1}
+      \field{labelalpha}{Ben+15}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 5th {International} {Workshop} on {Logic}, {Rationality}, and {Interaction} ({LORI} 2015)}
+      \field{title}{Symbolic {Model} {Checking} for {Dynamic} {Epistemic} {Logic}}
+      \field{year}{2015}
+      \field{pages}{366\bibrangedash 378}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1007/978-3-662-48561-3_30
+      \endverb
+    \endentry
+    \entry{vBEGS2018:SymDEL}{article}{}
+      \name{author}{4}{}{%
+        {{hash=f255bfca9dfd795ab9b555ed71486b14}{%
+           family={Benthem},
+           familyi={B\bibinitperiod},
+           given={Johan},
+           giveni={J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=9e7292c27370cc8340a3baf9e9a87fff}{%
+           family={Eijck},
+           familyi={E\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=adcf7c9a7403cdc07ea339cb07d2f94e}{%
+           family={Gattinger},
+           familyi={G\bibinitperiod},
+           given={Malvin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9a7c4260836d8a6efef54a1eac4a18a9}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Kaile},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{d4eedbcceea827bd99915a2d3955beb4}
+      \strng{fullhash}{d9dc890317f3c1b9eb2703efbaf6202b}
+      \strng{bibnamehash}{d9dc890317f3c1b9eb2703efbaf6202b}
+      \strng{authorbibnamehash}{d9dc890317f3c1b9eb2703efbaf6202b}
+      \strng{authornamehash}{d4eedbcceea827bd99915a2d3955beb4}
+      \strng{authorfullhash}{d9dc890317f3c1b9eb2703efbaf6202b}
+      \field{extraname}{2}
+      \field{labelalpha}{Ben+18}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Logic and Computation (JLC)}
+      \field{number}{2}
+      \field{title}{Symbolic {Model} {Checking} for {Dynamic} {Epistemic} {Logic} – {S5} and {Beyond}}
+      \field{volume}{28}
+      \field{year}{2018}
+      \field{pages}{367\bibrangedash 402}
+      \range{pages}{36}
+      \verb{doi}
+      \verb 10.1093/logcom/exx038
+      \endverb
+    \endentry
+    \entry{balbiani_dynamic_2013}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=24e09d7cbc723d373ecf06145c52bc11}{%
+           family={Balbiani},
+           familyi={B\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5704f4d2785e73b5a113721b593df496}{%
+           family={Herzig},
+           familyi={H\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ec114645397e958c7183106eceb256fc}{%
+           family={Troquard},
+           familyi={T\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{182e25462af3334278d0202831c2f788}
+      \strng{fullhash}{182e25462af3334278d0202831c2f788}
+      \strng{bibnamehash}{182e25462af3334278d0202831c2f788}
+      \strng{authorbibnamehash}{182e25462af3334278d0202831c2f788}
+      \strng{authornamehash}{182e25462af3334278d0202831c2f788}
+      \strng{authorfullhash}{182e25462af3334278d0202831c2f788}
+      \field{labelalpha}{BHT13}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We study a version of Propositional Dynamic Logic ({PDL}) that we call Dynamic Logic of Propositional Assignments ({DL}-{PA}). The atomic programs of {DL}-{PA} are assignments of propositional variables to true or to false. We show that {DL}-{PA} behaves better than {PDL}, having e.g. compactness and eliminability of the Kleene star. We establish tight complexity results: both satisﬁability and model checking are {EXPTIME}-complete.}
+      \field{booktitle}{28th Annual {ACM}/{IEEE} Symposium on Logic in Computer Science}
+      \field{isbn}{978-1-4799-0413-6}
+      \field{month}{6}
+      \field{shorttitle}{Dynamic Logic of Propositional Assignments}
+      \field{title}{Dynamic Logic of Propositional Assignments: A Well-Behaved Variant of {PDL}}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{pages}{143\bibrangedash 152}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/LICS.2013.20
+      \endverb
+    \endentry
+    \entry{Bryant86}{article}{}
+      \name{author}{1}{}{%
+        {{hash=733e32bf9035c50457c549c4ca2d1a72}{%
+           family={Bryant},
+           familyi={B\bibinitperiod},
+           given={Randal\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{733e32bf9035c50457c549c4ca2d1a72}
+      \strng{fullhash}{733e32bf9035c50457c549c4ca2d1a72}
+      \strng{bibnamehash}{733e32bf9035c50457c549c4ca2d1a72}
+      \strng{authorbibnamehash}{733e32bf9035c50457c549c4ca2d1a72}
+      \strng{authornamehash}{733e32bf9035c50457c549c4ca2d1a72}
+      \strng{authorfullhash}{733e32bf9035c50457c549c4ca2d1a72}
+      \field{labelalpha}{Bry86}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Computers}
+      \field{number}{8}
+      \field{title}{Graph-Based Algorithms for Boolean Function Manipulation}
+      \field{volume}{C-35}
+      \field{year}{1986}
+      \field{pages}{677\bibrangedash 691}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1109/TC.1986.1676819
+      \endverb
+    \endentry
+    \entry{ChakiBDDbasedMC2018}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=64278473608517c3973009c0a20fb765}{%
+           family={Chaki},
+           familyi={C\bibinitperiod},
+           given={Sagar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b6a85aabf982fa0236b58eb6b9f2ce66}{%
+           family={Gurfinkel},
+           familyi={G\bibinitperiod},
+           given={Arie},
+           giveni={A\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=1822cd554880ea55fd66357a96bca03e}{%
+           family={Clarke},
+           familyi={C\bibinitperiod},
+           given={Edmund\bibnamedelima M.},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=eeb928073fbee58751f87d401a62561a}{%
+           family={Henzinger},
+           familyi={H\bibinitperiod},
+           given={Thomas\bibnamedelima A.},
+           giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=5ac94523768e8fc4adb7a926b36d83e0}{%
+           family={Veith},
+           familyi={V\bibinitperiod},
+           given={Helmut},
+           giveni={H\bibinitperiod}}}%
+        {{hash=9865af1b742410e6dee8ca813e1ec733}{%
+           family={Bloem},
+           familyi={B\bibinitperiod},
+           given={Roderick},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer Nature}%
+      }
+      \strng{namehash}{5ced5d860f10ac22bd67097f71d6d009}
+      \strng{fullhash}{5ced5d860f10ac22bd67097f71d6d009}
+      \strng{bibnamehash}{5ced5d860f10ac22bd67097f71d6d009}
+      \strng{authorbibnamehash}{5ced5d860f10ac22bd67097f71d6d009}
+      \strng{authornamehash}{5ced5d860f10ac22bd67097f71d6d009}
+      \strng{authorfullhash}{5ced5d860f10ac22bd67097f71d6d009}
+      \strng{editorbibnamehash}{eea0cb89759dac86c5d80411829d95b2}
+      \strng{editornamehash}{2eed5a22a1fbe3a605ce6dc9254e65de}
+      \strng{editorfullhash}{eea0cb89759dac86c5d80411829d95b2}
+      \field{labelalpha}{CG18}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Symbolic model checking based on Binary Decision Diagrams ({BDDs}) is one of the most celebrated breakthroughs in the area of formal verification. It was originally proposed in the context of hardware model checking, and advanced the state of the art in model-checking capability by several orders of magnitude in terms of the sizes of state spaces that could be explored successfully. More recently, it has been extended to the domain of software verification as well, and several {BDD}-based model checkers for Boolean programs and push-down systems have been developed. In this chapter, we summarize some of the key concepts and techniques that have emerged in this story of successful practical verification.}
+      \field{booktitle}{Handbook of Model Checking}
+      \field{isbn}{978-3-319-10575-8}
+      \field{title}{{BDD}-Based Symbolic Model Checking}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{pages}{219\bibrangedash 245}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1007/978-3-319-10575-8_8
+      \endverb
+    \endentry
+    \entry{CKS1981:Alternation}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ab3c607a5ddbade7706ded6902cfcbeb}{%
+           family={Chandra},
+           familyi={C\bibinitperiod},
+           given={Ashok\bibnamedelima K.},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=5265940fab4b264eb95d50dc840e91b8}{%
+           family={Kozen},
+           familyi={K\bibinitperiod},
+           given={Dexter\bibnamedelima C.},
+           giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=1cd63188c51dd0ee992e8893a23862b9}{%
+           family={Stockmeyer},
+           familyi={S\bibinitperiod},
+           given={Larry\bibnamedelima J.},
+           giveni={L\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{14e8fca52dd8c390d445e3524dc4f7b5}
+      \strng{fullhash}{14e8fca52dd8c390d445e3524dc4f7b5}
+      \strng{bibnamehash}{14e8fca52dd8c390d445e3524dc4f7b5}
+      \strng{authorbibnamehash}{14e8fca52dd8c390d445e3524dc4f7b5}
+      \strng{authornamehash}{14e8fca52dd8c390d445e3524dc4f7b5}
+      \strng{authorfullhash}{14e8fca52dd8c390d445e3524dc4f7b5}
+      \field{labelalpha}{CKS81}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the ACM}
+      \field{number}{1}
+      \field{title}{Alternation}
+      \field{volume}{28}
+      \field{year}{1981}
+      \field{pages}{114\bibrangedash 133}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1145/322234.322243
+      \endverb
+    \endentry
+    \entry{CharSucc2017}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=efbb70be6f2223d4f10e6098f8c9f978}{%
+           family={Charrier},
+           familyi={C\bibinitperiod},
+           given={Tristan},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5a76bb7e9fa1dca1edcb1769ee960b74}{%
+           family={Schwarzentruber},
+           familyi={S\bibinitperiod},
+           given={François},
+           giveni={F\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=79102bceb110ceb3bd840ef6130deca0}{%
+           family={{S. Das}},
+           familyi={S\bibinitperiod}}}%
+        {{hash=a4f94856c16fe301e3a69aeb7e88dd45}{%
+           family={{E. Durfee}},
+           familyi={E\bibinitperiod}}}%
+        {{hash=defaf21af95af45e706ef84e128982a2}{%
+           family={{K. Larson}},
+           familyi={K\bibinitperiod}}}%
+        {{hash=6974ca78b87bf458db0aa25fc92d31c9}{%
+           family={{M. Winikoff}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {International Foundation for Autonomous Agents}%
+        {Multiagent Systems}%
+      }
+      \strng{namehash}{e08c5e7898f4818053eb63b659db3c9f}
+      \strng{fullhash}{e08c5e7898f4818053eb63b659db3c9f}
+      \strng{bibnamehash}{e08c5e7898f4818053eb63b659db3c9f}
+      \strng{authorbibnamehash}{e08c5e7898f4818053eb63b659db3c9f}
+      \strng{authornamehash}{e08c5e7898f4818053eb63b659db3c9f}
+      \strng{authorfullhash}{e08c5e7898f4818053eb63b659db3c9f}
+      \strng{editorbibnamehash}{34378f41791376f7cb1ef7628b597635}
+      \strng{editornamehash}{7dd98b4d11aea54bc08e3373d4a09fe1}
+      \strng{editorfullhash}{34378f41791376f7cb1ef7628b597635}
+      \field{labelalpha}{CS17}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Dynamic epistemic logic ({DEL}) is an extension of modal multi-agent epistemic logic with dynamic operators. We propose a succinct version of {DEL} where Kripke models and event models are described succinctly. Our proposal relies on Dynamic logic of propositional assignments ({DLPA}): epistemic relations are described with so-called accessibility programs written in {DLPA}. We give examples of models that are exponentially more succinct in our framework. Interestingly, the model checking of {DEL} is {PSPACE}-complete and we show that it remains in {PSPACE} for the succinct version.}
+      \field{booktitle}{Proceedings of the 16th Conference on Autonomous Agents and Multiagent Systems}
+      \field{series}{{AAMAS} '17}
+      \field{title}{A Succinct Language for Dynamic Epistemic Logic}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{pages}{123\bibrangedash 131}
+      \range{pages}{9}
+      \verb{urlraw}
+      \verb https://www.ifaamas.org/Proceedings/aamas2017/pdfs/p123.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.ifaamas.org/Proceedings/aamas2017/pdfs/p123.pdf
+      \endverb
+    \endentry
+    \entry{DELbook}{book}{}
+      \name{author}{3}{}{%
+        {{hash=98bf5ff4462affb60280f4a79b7e0af9}{%
+           family={Ditmarsch},
+           familyi={D\bibinitperiod},
+           given={Hans},
+           giveni={H\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=3150fc26beff5961c3d7654f19810628}{%
+           family={Hoek},
+           familyi={H\bibinitperiod},
+           given={Wiebe},
+           giveni={W\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=791ca0a4ae535d8459364215642ecb7e}{%
+           family={Kooi},
+           familyi={K\bibinitperiod},
+           given={Barteld},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{94cf9ede4bfbddd3e526c8c21742664d}
+      \strng{fullhash}{94cf9ede4bfbddd3e526c8c21742664d}
+      \strng{bibnamehash}{94cf9ede4bfbddd3e526c8c21742664d}
+      \strng{authorbibnamehash}{94cf9ede4bfbddd3e526c8c21742664d}
+      \strng{authornamehash}{94cf9ede4bfbddd3e526c8c21742664d}
+      \strng{authorfullhash}{94cf9ede4bfbddd3e526c8c21742664d}
+      \field{labelalpha}{DHK07}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-4020-5838-7}
+      \field{title}{Dynamic {Epistemic} {Logic}}
+      \field{year}{2007}
+      \verb{doi}
+      \verb 10.1007/978-1-4020-5839-4
+      \endverb
+    \endentry
+    \entry{rakhalpern1995}{book}{}
+      \name{author}{4}{}{%
+        {{hash=ac675e1b6c0d303691ca1e438688780e}{%
+           family={Fagin},
+           familyi={F\bibinitperiod},
+           given={Ronald},
+           giveni={R\bibinitperiod}}}%
+        {{hash=610a5aa55255d24fd3b5bfdd80bcc4e2}{%
+           family={Halpern},
+           familyi={H\bibinitperiod},
+           given={Joseph\bibnamedelima Y.},
+           giveni={J\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=e0358215279a335adf4daf86a4660222}{%
+           family={Moses},
+           familyi={M\bibinitperiod},
+           given={Yoram},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=a4cf237a06b02ad7e7601b14b4d005be}{%
+           family={Vardi},
+           familyi={V\bibinitperiod},
+           given={Moshe\bibnamedelima Y.},
+           giveni={M\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {{MIT} Press}%
+      }
+      \strng{namehash}{62c41b8d080f522437878468562328dc}
+      \strng{fullhash}{4a117ee76abd91b8a72e11b3a8a05430}
+      \strng{bibnamehash}{4a117ee76abd91b8a72e11b3a8a05430}
+      \strng{authorbibnamehash}{4a117ee76abd91b8a72e11b3a8a05430}
+      \strng{authornamehash}{62c41b8d080f522437878468562328dc}
+      \strng{authorfullhash}{4a117ee76abd91b8a72e11b3a8a05430}
+      \field{labelalpha}{Fag+95}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780262562003}
+      \field{title}{Reasoning About Knowledge}
+      \field{year}{1995}
+      \verb{doi}
+      \verb 10.7551/MITPRESS/5803.001.0001
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.7551/mitpress/5803.001.0001
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.7551/mitpress/5803.001.0001
+      \endverb
+    \endentry
+    \entry{SMCDEL}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=adcf7c9a7403cdc07ea339cb07d2f94e}{%
+           family={Gattinger},
+           familyi={G\bibinitperiod},
+           given={Malvin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9c18fe3ce9856cff6bc2110f29d59b71}{%
+           family={Volpe},
+           familyi={V\bibinitperiod},
+           given={Stefano},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9b3319633e0c785e37f94f4a591db91e}{%
+           family={Laarakker},
+           familyi={L\bibinitperiod},
+           given={Bas},
+           giveni={B\bibinitperiod}}}%
+        {{hash=3c3e0c50899363017ca92fc6b6bc78f8}{%
+           family={Miedema},
+           familyi={M\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{79af836c02f7da15c48e51d1ba73ca48}
+      \strng{fullhash}{0788c4c570077cf0f40ba3dafd491884}
+      \strng{bibnamehash}{0788c4c570077cf0f40ba3dafd491884}
+      \strng{authorbibnamehash}{0788c4c570077cf0f40ba3dafd491884}
+      \strng{authornamehash}{79af836c02f7da15c48e51d1ba73ca48}
+      \strng{authorfullhash}{0788c4c570077cf0f40ba3dafd491884}
+      \field{labelalpha}{Gat+24}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Version 1.3.0}
+      \field{title}{SMCDEL — A symbolic model checker for Dynamic Epistemic Logic}
+      \field{year}{2024}
+      \verb{doi}
+      \verb 10.5281/zenodo.11061438
+      \endverb
+      \verb{urlraw}
+      \verb https://github.com/jrclogic/SMCDEL
+      \endverb
+      \verb{url}
+      \verb https://github.com/jrclogic/SMCDEL
+      \endverb
+    \endentry
+    \entry{GattingerThesis2018}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=adcf7c9a7403cdc07ea339cb07d2f94e}{%
+           family={Gattinger},
+           familyi={G\bibinitperiod},
+           given={Malvin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Amsterdam}%
+      }
+      \strng{namehash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{fullhash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{bibnamehash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{authorbibnamehash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{authornamehash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{authorfullhash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \field{extraname}{1}
+      \field{labelalpha}{Gat18}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-94-028-1025-7}
+      \field{title}{New Directions in Model Checking Dynamic Epistemic Logic}
+      \field{type}{phdthesis}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://malv.in/phdthesis
+      \endverb
+      \verb{url}
+      \verb https://malv.in/phdthesis
+      \endverb
+    \endentry
+    \entry{GatSymSucShifts2020}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=adcf7c9a7403cdc07ea339cb07d2f94e}{%
+           family={Gattinger},
+           familyi={G\bibinitperiod},
+           given={Malvin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{fullhash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{bibnamehash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{authorbibnamehash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{authornamehash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \strng{authorfullhash}{adcf7c9a7403cdc07ea339cb07d2f94e}
+      \field{extraname}{2}
+      \field{labelalpha}{Gat20}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{EpiP workshop at ICAPS 2020}
+      \field{title}{Towards Symbolic and Succinct Perspective Shifts}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.5281/zenodo.4767546
+      \endverb
+      \verb{urlraw}
+      \verb https://malv.in/2020/EpiP-perspective-shifts.pdf
+      \endverb
+      \verb{url}
+      \verb https://malv.in/2020/EpiP-perspective-shifts.pdf
+      \endverb
+    \endentry
+    \entry{Hartlief2020}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=3f7144f6c533fd6ef1f865e2c127bcf6}{%
+           family={Hartlief},
+           familyi={H\bibinitperiod},
+           given={Maickel},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3f7144f6c533fd6ef1f865e2c127bcf6}
+      \strng{fullhash}{3f7144f6c533fd6ef1f865e2c127bcf6}
+      \strng{bibnamehash}{3f7144f6c533fd6ef1f865e2c127bcf6}
+      \strng{authorbibnamehash}{3f7144f6c533fd6ef1f865e2c127bcf6}
+      \strng{authornamehash}{3f7144f6c533fd6ef1f865e2c127bcf6}
+      \strng{authorfullhash}{3f7144f6c533fd6ef1f865e2c127bcf6}
+      \field{labelalpha}{Har20}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{BSc thesis, Groningen. Code avaliable at \url{https://github.com/Maickel-Hartlief/SucExpModelCheckers}}
+      \field{title}{Making Model Checking Scalable: Implementing Succinct Kripke Models for Public Announcement Logic}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://fse.studenttheses.ub.rug.nl/23607/
+      \endverb
+      \verb{url}
+      \verb https://fse.studenttheses.ub.rug.nl/23607/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

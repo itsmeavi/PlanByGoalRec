@@ -1,0 +1,224 @@
+
+\subsection{Model Checking Symbolic DEL}
+
+\malvin{merge with next section}
+
+\begin{theorem}\label{thm:SymDEL}
+Model checking DEL-S5 on symbolic knowledge structures is in PSPACE.
+\end{theorem}
+
+Challenges: Instead of $L$ with just public announcements.
+
+Idea: now we need a list of transformers. (TODO cite aucher paper)
+
+\begin{defi} TODO: put 2.5.1 from MG thesis here (done)
+
+A transformer is of the form $\mathcal{X}_k = (V^+_k, \theta^+_k, {O_i^+}_k)$, where $V^+$ is a set of atomic propositions such that $V \cap V^+ = \varnothing$, $\theta^+$ is a possibly epistemic formula from $\mathcal{L}(V \cup V^+)$ called the event law and $O_i \subseteq V^+$ for all agents $i$. An event is knowledge transformer together with a subset $x \subseteq V^+$, written as $(\mathcal{X}, x)$. 
+\end{defi}
+
+
+To check $\F,s \vDash [\mathcal{X},x]\phi$, just add it to the list.
+
+If we currently have list $L = [ (\mathcal{X}_1, x_1), \dots, (\mathcal{X},x_n) ]$
+then to check $K_i \phi$ 
+
+we want to have all $t \subseteq V \cup V^+_1 \cup \dots \cup V^+_n$
+
+that satisfy $t \vDash \theta
+\land |\theta_1^+|_\F
+\land |\theta_2^+|_{\F \otimes \mathcal{X}_1}
+\land \dots
+\land |\theta_n^+|_{\F \otimes \mathcal{X}_1 \otimes \dots \otimes \mathcal{X}_n} $
+% \haitian{the subscript should be F instead of X according to Malvin's thesis or that won't make a difference?}
+% \malvin{Correct, I changed it to $\F \otimes \mathcal{X}_1 \otimes \dots \otimes \mathcal{X}_n$.}
+
+and such that $(s \cup x_1 \cup \dots \cup x_n) \cap (O_i \cup {O_i^+}_1 \cup \dots \cup {O_i^+}_n) = t \cap (O_i \cup {O_i^+}_1 \cup \dots \cup {O_i^+}_n)$
+
+Now we do not want to compute potentially too large formulas/BDDs such as $|\theta_2|_{\mathcal{X} \otimes \mathcal{X}_1}$
+
+Instead, loop over $t \subseteq V \cup V^+_1$ and check if 
+$\F, t \vDash \theta_2$. \haitian{I don't get it here. But we need to do this recursively and still need to store potentially long updated models at each step in order to evaluate the formula after all these action updates?}
+\malvin{We do not store the updated model, only the list of transformers to get there. The length of the list is bounded by the formula, and it can be much smaller than the model (which might e.g. double with every update).}
+
+\begin{defi}\label{def:alg-checkDEL}
+We define \Cref{alg:checkDEL}. Note the case for event update is according to definition 2.10.2 of Malvin's thesis. Specifically, $[x \sqsubseteq V^+] \theta^+$ takes the role of preconditions.
+\malvin{Please write $\outof(A,B)$ for this as defined above.}
+\haitian{The problem is that I am not trying to express conjunctions of true and false variables, but to replace the vars in $\theta$ with true and false.}
+\malvin{Ohh, indeed, I mixed this up, sorry!}
+According to Definition 1.0.3 of Malvin's thesis, $[A \sqsubseteq B] \varphi := [A \mapsto \top][B \mapsto \bot] \varphi$. In other words, among the variables that appear in $\varphi$, the variables that are also in A are set to be true, and those in B are set to be false. This makes it clear? why $[x \sqsubseteq V^+] \theta^+$ can serve as preconditions. \haitian{The case for $K_i \varphi$ hasn't been done yet.}
+
+% Note that in the algorithm we do not use the common PAL reduction axioms as they would blow up by making copies of the announced formulas as in $[!\psi]K_i \chi \equiv \psi \to K_i [!\psi]\chi$.
+% If we would need to store the resulting formula then we are no longer in PSPACE.
+
+\malvin{algorithm removed here, covered by more general one}
+\end{defi}
+
+
+\begin{theorem}\label{thm:DELcheckCorrect}
+    Given a pointed knowledge structure $\F = \ldiaarg{V,\theta,O_i},s\subseteq V$, list of $\PAL$ formulas $L = [(\mathcal{X}_0, x_0), \ldots, (\mathcal{X}_k,x_k)]$ and a $\DEL$ formula $\varphi$, we have
+    $\F^{(\mathcal{X}_0, x_0) \ldots (\mathcal{X}_k,x_k)},s\vDash\varphi$ iff $\chkdel(\F,L,s,\varphi)$ returns $\Tr$.
+\end{theorem}
+\begin{proof}
+    Given that the structure of the algorithm for $\DEL$ case is the same as that for the $\PAL$ case, the proof for the $\PAL$ case can be generalized to this case. 
+\end{proof}
+
+\begin{theorem}
+    $\chkdel(\F,[],s,\phi)$ takes at most polynomial space with respect to size of input.
+\end{theorem}
+\begin{proof}
+    At any instance of a call to $\chkdel(\F,L,s,\phi)$, exactly one case of the switch matches. Every recursive call taken inside $\chkdel(\F,L,s,\phi)$ is of size strictly lesser than the size of the current input. 
+
+    Moreover, in the input stack, there are at most linear many recursive calls left to evaluate at any given instance. Also, in the current call, the space used is also polynomial. The most intensive being the case for $K_i \phi_1$. Here, the algorithm goes through every valuation $t\subseteq V$. It does not remember the valuation, it only counts the id of each state or valuation, which can be represented only using the propositions in $V$. \haitian{The proof should be the same as that for PAL's case. But I need to read it again to fully understand the proof...}
+\end{proof}
+
+
+\begin{proof}[Proof of \Cref{thm:SymDEL}]
+We claim for \Cref{alg:checkDEL} that
+(i) it runs in PSPACE and
+(ii) it is correct, i.e.\ $\chkdel(\F, [], s, \phi)$ returns true iff $\F, s \vDash \phi$.
+
+\end{proof}
+
+
+
+\subsection{Model Checking Symbolic DEL with factual change}
+\haitian{Still working on this section.}
+It seems no additional quantification is needed :-) \haitian{and this is because..? Also, are we doing knowledge transformer or belief transformer? For the knowledge transformer case, it looks similar to the DEL case.}
+
+
+\begin{theorem}\label{thm:SymDEL}
+Model checking fcDEL-S5 on symbolic knowledge structures is in PSPACE.
+\end{theorem}
+
+Challenges: Instead of $L$ with just public announcements.
+
+Idea: now we need a list of transformers. (\cite{ComplexityDELAucherS13})
+
+\begin{defi} (2.8.5 of Malvin's thesis)
+A knowledge transformer with factual change is of the form $\mathcal{X}_k = (V^+_k, \theta^+_k, {V_-}_k, {\theta_-}_k, {O_i^+}_k)$ where $V^+$ is a set of atomic propositions such that $V \cap V^+ = \varnothing$, $\theta^+$ is a possibly epistemic formula from $\mathcal{L}(V \cup V^+)$ called the event law, $V_- \subseteq V$ is a subset of the original vocabulary called the modified subset, $\theta_- : V_- \rightarrow \mathcal{L}_{B}(V \cup V^+)$ is a map from modified propositions to boolean formulas called the change law and $O_i \subseteq V^+$ for all agents $i$. An event is a knowledge transformer with factual change together with a subset $x \subseteq V^+$, written as $(\mathcal{X}, x)$. 
+\end{defi}
+
+To transform a scene $(\mathcal{F}, s)$ where $\mathcal{F}$ is a knowledge structure, with an event $(\mathcal{\chi, x})$ where $\chi$ is a knowledge transformer with factual change, let $\mathcal{F} \times \chi := (V^{new}, \theta^{new}, O^{new}_i)$ where $V^{new} = V \cup V^+ \cup V ^\circ _-$, $\theta^{new}=[V_- \mapsto V^\circ _-](\theta \land ||\theta ^+||_\mathcal{F}) \land \bigwedge_{q \in V^-}(q \leftrightarrow [V_- \mapsto V^\circ _ -](\theta_-(q)))
+$ and $O^{new}_i=([V_- \mapsto V^{\circ}_-]O_i)\cup O^+ _i$. the new actual state $s^x = (s \setminus V_-) \cup (s \cap V_-)^\circ \cup x \cup \{p \in V_- | s \cup x \vDash \theta_-(p)\}$.\\
+
+Notation: $[p \mapsto \psi] \varphi$ means substitution: replace $p$ with $\psi$ in $\varphi$.\\
+
+
+
+
+
+
+To check $\F,s \vDash [\mathcal{X},x]\phi$, just add it to the list.
+
+If we currently have list $L = [ (\mathcal{X}_1, x_1), \dots, (\mathcal{X},x_n) ]$
+then to check $K_i \phi$ 
+
+we want to have all $t \subseteq V \cup V^+_1 \cup \dots \cup V^+_n$
+
+that satisfy $t \vDash \theta
+\land |\theta_1|_\mathcal{X}
+\land |\theta_2|_{\mathcal{X} \otimes \mathcal{X}_1}
+\land \dots
+\land |\theta_n|_{\mathcal{X} \otimes \mathcal{X}_1 \otimes \dots \otimes \mathcal{X}_n } $ \haitian{the subscript should be F instead of X according to Malvin's thesis or that won't make a difference?}
+\malvin{Correct, it should be $\F \otimes \mathcal{X}_1 \otimes \dots \otimes \mathcal{X}_n$ here.}
+
+and such that $(s \cup x_1 \cup \dots \cup x_n) \cap (O_i \cup {O_i^+}_1 \cup \dots \cup {O_i^+}_n) = t \cap (O_i \cup {O_i^+}_1 \cup \dots \cup {O_i^+}_n)$
+
+Now we do not want to compute potentially too large formulas/BDDs such as $|\theta_2|_{\mathcal{X} \otimes \mathcal{X}_1}$
+
+Instead, loop over $t \subseteq V \cup V^+_1$ and check if 
+$\F, t \vDash \theta_2$.
+
+\begin{defi}\label{def:alg-checkDEL}
+We define \Cref{alg:checkfcDEL}. Note the case for event update is according to definition 2.10.2 of Malvin's thesis. Specifically, $[x \sqsubseteq V^+] \theta^+$ takes the role of preconditions.
+\malvin{Please write $\outof(A,B)$ for this as defined above.}
+\haitian{The problem is that I am not trying to express conjunctions of true and false variables, but to replace the vars in $\theta$ with true and false.}
+\malvin{Ohh, indeed, I mixed this up, sorry!}
+According to Definition 1.0.3 of Malvin's thesis, $[A \sqsubseteq B] \varphi := [A \mapsto \top][B \mapsto \bot] \varphi$. In other words, among the variables that appear in $\varphi$, the variables that are also in A are set to be true, and those in B are set to be false. This makes it clear? why $[x \sqsubseteq V^+] \theta^+$ can serve as preconditions. \haitian{The case for $K_i \varphi$ hasn't been done yet.}
+
+% Note that in the algorithm we do not use the common PAL reduction axioms as they would blow up by making copies of the announced formulas as in $[!\psi]K_i \chi \equiv \psi \to K_i [!\psi]\chi$.
+% If we would need to store the resulting formula then we are no longer in PSPACE.
+
+
+\begin{algorithm}[H]
+\caption{$\chkfcdel$}\label{alg:checkfcDEL}
+\KwIn{Knowledge structure $\F=(V,\theta, O)$,
+    list of events $L = [(\X_0, x_0), \ldots, (\X_k, x_k)]$,
+    state $s \subseteq V$,
+    formula $\phi$}
+% fixme: how to format preconditions with algorithms package?
+\textbf{Precondition} $L$ can be executed on $\F,s$.\\
+\KwOut{$\mathsf{true}$ or $\mathsf{false}$}
+
+\Switch{$\phi$}{
+    \Case{$p$ (still PSPACE?)}{
+        \If{$L = []$}{
+            \Return $p \in s$
+        }
+        \tcp{Compute the final state}
+        \ForEach{$j \in [0, \dots, k]$\label{algoline:DELverifytsurv}}{
+            $s := (s \setminus V_{j,-}) \cup \{ q \in V_{j,-} \mid \chkfcdel(\F, [(\X, x_0), \ldots, (\X,x_j)], s, [x_j^+ \sqsubseteq V_j ^+] \theta_j^-(q)) \}$
+        }
+        \Return $p \in s$
+    }
+    \Case{$\lnot \phi$}{
+        \Return NOT $\chkfcdel(\F, L, s, \phi)$
+    }
+    \Case{$\phi_1 \land \phi_2$}{
+        \Return ($\chkfcdel(\F, L, s, \phi_1)$ AND $\chkfcdel(\F, L, s, \phi_2)$)
+    }
+    \Case{$K_i \psi$ (still PSPACE?)}{
+        \ForEach{$t \subseteq V$, $t^+_0 \subseteq V_0^+, \dots, t^+_k \subseteq V_k^+$}{
+            \If{$t \vDash \theta$}{
+                \If{$t\cap O_i = s\cap O_i $ AND $t_1^+ \cap O_{0,i}^+ = x_1 \cap O_{0,i}^+$ AND \dots, $t_k^+ \cap O_{k,i}^+ = x_k \cap O_{k,i}^+$\label{algoline:DELcheckindisting}}{
+                    \texttt{accessible} := $\mathsf{true}$ \tcp{did $t$ ``survive'' the actions in $L$?}
+                    \ForEach{$j \in [0, \dots, k]$\label{algoline:DELverifytsurv}}{
+                        \If{not $\chkdel(\F, [(\mathcal{X}_0, t_0^+), \ldots, (\mathcal{X}_{j-1},t_{j-1}^+)], t, [t_j^+ \sqsubseteq V_j ^+] \theta_j ^+)$}{
+                            \texttt{accessible} := $\mathsf{false}$
+                        }
+                    }
+                    \If{\texttt{accessible}}{
+                        \If{not $\chkdel(\F, [(\mathcal{X}_0, x_0), \ldots, (\mathcal{X}_k,x_k)], t, \psi)$}{
+                            \Return $\Fa$
+                        }
+                    }
+                }
+            }
+        }
+        \Return $\mathsf{true}$
+    }
+    \Case{$[\mathcal{X}, x] \psi$
+      }{
+        \If{$\chkfcdel(\F, L, s, [x \sqsubseteq V ^+] \theta ^+)$ \tcp{Are the preconditions satisfied?(2.10.2 of Malvin's thesis)}\label{algoline:DELeventprecondition}}{
+            \Return ($\chkfcdel(\F, L ++ [( \mathcal{X}, x )], s, \psi)$
+        }
+        \Return $\Tr$\label{algoline:DELvacutrue}
+    }
+}
+\end{algorithm}
+\end{defi}
+
+\begin{theorem}\label{thm:DELcheckCorrect}
+    Given a pointed knowledge structure $\F = \ldiaarg{V,\theta,O_i},s\subseteq V$ and a $\DEL$ formula $\varphi$, we have
+    $\F,s \vDash \varphi$ iff $\chkdel(\F,[],s,\varphi)$ returns $\Tr$.
+\end{theorem}
+\begin{proof}
+    Given that the structure of the algorithm for $\DEL$ case is the same as that for the $\PAL$ case, the proof for the $\PAL$ case can be generalized to this case. 
+\end{proof}
+
+\begin{theorem}
+    $\chkdel(\F,[],s,\phi)$ takes at most polynomial space with respect to size of input.
+\end{theorem}
+\begin{proof}
+    At any instance of a call to $\chkdel(\F,L,s,\phi)$, exactly one case of the switch matches. Every recursive call taken inside $\chkdel(\F,L,s,\phi)$ is of size strictly lesser than the size of the current input. 
+
+    Moreover, in the input stack, there are at most linear many recursive calls left to evaluate at any given instance. Also, in the current call, the space used is also polynomial. The most intensive being the case for $K_i \phi_1$. Here, the algorithm goes through every valuation $t\subseteq V$. It does not remember the valuation, it only counts the id of each state or valuation, which can be represented only using the propositions in $V$. \haitian{The proof should be the same as that for PAL's case. But I need to read it again to fully understand the proof...}
+\end{proof}
+
+
+\begin{proof}[Proof of \Cref{thm:SymDEL}]
+We claim for \Cref{alg:checkDEL} that
+(i) it runs in PSPACE and
+(ii) it is correct, i.e.\ $\chkdel(\F, [], s, \phi)$ returns true iff $\F, s \vDash \phi$.
+
+\end{proof}

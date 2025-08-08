@@ -1,0 +1,243 @@
+\documentclass[submission,copyright,creativecommons]{eptcs}
+\input{header_eptcs.tex}
+\providecommand{\event}{SOS 2007} % Name of the event you are submitting to
+
+\usepackage{iftex}
+
+\ifpdf
+  \usepackage{underscore}         % Only needed if you use pdflatex.
+  \usepackage[T1]{fontenc}        % Recommended with pdflatex
+\else
+  \usepackage{breakurl}           % Not needed if you use pdflatex only.
+\fi
+
+\title{Comparing State-Representations for DEL Model Checking}
+\author{
+}
+\def\titlerunning{A Longtitled Paper}
+\def\authorrunning{R.J. van Glabbeek, C. Author \& Y.S. Else}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  We compare different representations of the Kripke models used in Dynamic Epistemic Logic in order to compare the complexity of model checking when using these representations.
+
+  Our main results are
+  (i) a proof that model checking DEL on symbolic structures encoded with BDDs is PSPACE-complete and
+  (ii) direct translations between symbolic models using BDDs and succinct models using mental programs.
+  Both translations are exponential.
+  For the translation from mental programs to BDDs we show that no small translation exists.
+  For the other direction we conjecture the same.
+\end{abstract}
+
+\section{Introduction}
+
+Reasoning about knowledge and its representation has become one of the most important lines of study in Artificial Intelligence, most importantly in Epistemic Planning [cite:Belle special issue]. One of the most important logical frameworks that formalises and reasons about the knowledge of multiple intelligent agents is called Epistemic Logic [cite:modal logic blue book]. It uses the popular all possible \emph{worlds} or truths and uses binary relations to interpret which worlds are \emph{believed} or \emph{indistinguishable} to an agent given some other world is the actual scenario. Knowledge of an agent is simply the facts or truth believed by her in all such worlds she considers possible.
+
+Epistemic logic can reason about things like whether ``an agent knows a fact" but cannot reason or model whether ``after some event, an agent knows a truth". This aspect is interesting because of the fact that events can change the entire knowledge state of the agents participating in the scenario. For example, while playing cards, if one player announces its card to a subset of players privately, the knowledge state of all the players changes completely. This is not only for the players who came to know of the card, but also for the players who noticed the announcement being done. To formalise and reason about these kind of scenarios, there have been various extensions of epistemic logic defined in the literature, most important of all, and in fact the logics considered in this work, are  Public Announcement Logic ($\PAL$) [cite: Lutz, Plaza] and Dynamic Epistemic Logic ($\DEL$) [cite: hans]. 
+
+From the computational complexity perspective, the problem of model-checking of logics like $\DEL$ and $\PAL$ plays a huge role in the safety verification of systems and processes [maybe cite Pnuelli]. Here, given a model of the logical framework, and a formula of it, the goal is to decide whether the formula holds in the model. The model-checking procedure of $\PAL$ takes polynomial time [cite: I think Lutz] whereas of $\DEL$ takes polynomial space ($\PSPACE$) [cite:Aucher].
+
+\avijeet{TODO for me: Scalability issues of Kripke}
+One issue that such logical systems have is scalability. Note that, considering all possibilities of a given set of truths is computationally huge. In other words, with $n$ any propostions to consider, enumerating all possible truths over is considering $2^n$ many of them in worst-case. Hence, even though the theoretical results suggest efficiency in model-checking, the input to those checkers are of huge size with respect to those of the size of truths dealt with. 
+
+There have been many studies in line of this ``succinct representations" for efficient model-checkers. This particular work draw motivation from two of the most important works: symbolic structures by Malvin et.al. [cite] and Mental programs by Charrier et. al. [cite]. In both these works, the authors try to succinctly represent $\DEL$ models and investigate the model-checking results. This work comes as a comparison study between the two structures along with some theoretical results. 
+
+Common in both these representations is that they do not enumerate all possible states explicitly. They only have the information of the parameters/propositions whose all possible truths are implied. Hence, what remains is to how to interpret the \emph{indistinguishability} relations among agents.
+In particular we compare:
+\begin{itemize}
+    \item The \emph{knowledge structures}: Here the structure only keep track of which propositions an agent can \emph{distinguish} or observe. That is, if agent $i$ can observe proposition $p$, then it means $i$ cannot distinguish among all the possibilities where $p$ is true, and cannot distinguish among all possibilities where $p$ is not true.
+    \item The \emph{mental programs}: Mental programs interpret relations among truth values of propositions by interpreting which are the truths changes using some specific regular-language like syntax.
+\end{itemize}
+
+% \malvin{Maybe omit all formal symbols here, only describe the different representations on a high level?}
+% \begin{itemize}
+% \item 
+%   Standard Kripke Models $(W,R,V)$ which use relations $R_i \subseteq W \times W$.
+% \item
+%   Symbolic structures of the form $(V, \theta, O_i)$ which use a set of observations to encode equivalence relations
+%   belief structures of the form $(V, \theta, \Omega_i)$
+%   which use BDDs~\cite{vBEGS2018:SymDEL}.
+% \item
+%   Succinct model $(V,\theta, \pi_i)$ which use \emph{mental programs}~\cite{CharSucc2017}.
+% \end{itemize}
+
+When moving from one representation to another, the complexity of model checking can differ.
+
+Interestingly, for the succinct representation theoretical results about the model checking complexity are available, but not yet for the symbolic structures.
+With the present article we close this gap.
+
+Vice versa, the symbolic structures have been implemented and benchmarks show that they outperform standard Kripke models, but the succinct representations have not been implemented and benchmarked, with the exception of~\cite{Hartlief2020}.
+...
+
+
+TODO: summarize existing and new complexity results in \Cref{tab:overview}.
+Each entry should either be a citation or a reference to a theorem or corollary from us here.
+
+NOTE: The discussion here should also go into single-pointed vs multi-pointed (citing if those make a difference for the existing results) and say that for simplicity we focus on single-pointed models throughout the article here. 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|lll}
+Representation & Kripke models & Succinct models & Symbolic Structures \\
+\midrule
+EL-S5 & P~\cite{rakhalpern1995} & - & PSPACE \Cref{thm:SymELhard}, ? \\
+EL-K & P~\cite{rakhalpern1995} & PSPACE, ? DLPA reference ? & PSPACE \Cref{thm:SymELKhard}, ? \\
+PAL-S5 & ? & - & PSPACE ?, \Cref{thm:SymPA} \\
+PAL-K & ? & ? & PSPACE ? TODO easy corollary \\
+DEL-S5 & ? & - & PSPACE ??? TODO Corollary \\
+DEL-K & PSPACE~\cite{ComplexityDELAucherS13} & PSPACE \cite{CharSucc2017} & PSPACE \Cref{thm:SymDEL} ? \\
+\end{tabular}
+\caption{Overview of model checking complexity results. First reference is for hardness, second for membership.
+\\
+For Kripke models cite DEL book or FaginHalpern
+}\label{tab:overview}
+\end{table}
+
+\section{Ancillary files}
+
+Authors may upload ancillary files to be linked alongside their paper.
+These can, for instance, contain raw data for tables and plots in the
+article or program code.  Ancillary files are included with an EPTCS
+submission by placing them in a directory \texttt{anc} next to the
+main latex file. See also \url{https://arxiv.org/help/ancillary_files}.
+Please add a file README in the directory \texttt{anc}, explaining the
+nature of the ancillary files, as in
+\url{http://eptcs.org/paper.cgi?226.21}.
+
+\section{Prefaces}
+
+Volume editors may create prefaces using this very template,
+with {\ttfamily $\backslash$title$\{$Preface$\}$} and {\ttfamily $\backslash$author$\{\}$}.
+
+\section{Bibliography}
+
+We request that you use
+\href{http://eptcs.web.cse.unsw.edu.au/eptcs.bst}
+{\ttfamily $\backslash$bibliographystyle$\{$eptcs$\}$}
+\cite{bibliographystylewebpage}, or one of its variants
+\href{http://eptcs.web.cse.unsw.edu.au/eptcsalpha.bst}{eptcsalpha},
+\href{http://eptcs.web.cse.unsw.edu.au/eptcsini.bst}{eptcsini} or
+\href{http://eptcs.web.cse.unsw.edu.au/eptcsalphaini.bst}{eptcsalphaini}
+\cite{bibliographystylewebpage}. Compared to the original {\LaTeX}
+{\ttfamily $\backslash$biblio\-graphystyle$\{$plain$\}$},
+it ignores the field {\ttfamily month}, and uses the extra
+bibtex fields {\ttfamily eid}, {\ttfamily doi}, {\ttfamily eprint} and {\ttfamily url}.
+The first is for electronic identifiers (typically the number $n$
+indicating the $n^\mathrm{th}$ paper in an issue) of papers in electronic
+journals that do not use page numbers. The other three are to refer,
+with life links, to electronic incarnations of the paper.
+
+\paragraph{DOIs}
+
+Almost all publishers use digital object identifiers (DOIs) as a
+persistent way to locate electronic publications. Prefixing the DOI of
+any paper with {\ttfamily https://doi.org/} yields a URI that resolves to the
+current location (URL) of the response page\footnote{Nowadays, papers
+  that are published electronically tend
+  to have a \emph{response page} that lists the title, authors and
+  abstract of the paper, and links to the actual manifestations of
+  the paper (e.g., as {\ttfamily dvi} or {\ttfamily pdf} file). Sometimes
+  publishers charge money to access the paper itself, but the response
+  page is always freely available.}
+of that paper. When the location of the response page changes (for
+instance, through a merge of publishers), the DOI of the paper remains
+the same and (through an update by the publisher) the corresponding
+URI will then resolve to the new location. For that reason, a reference
+ought to contain the DOI of a paper, with a live link to the corresponding
+URI, rather than a direct reference or link to the current URL of the
+publisher's response page. This is the r\^ole of the bibtex field {\ttfamily doi}.
+{\bfseries EPTCS requires the inclusion of a DOI in each cited paper, when available.}
+
+DOIs of papers can often be found through
+\url{http://www.crossref.org/guestquery};\footnote{For papers that will appear
+  in EPTCS and use \href{http://eptcs.web.cse.unsw.edu.au/eptcs.bst}
+  {\ttfamily $\backslash$bibliographystyle$\{$eptcs$\}$} there is no need to
+  find DOIs on this website, as EPTCS will look them up for you
+  automatically upon submission of the first version of your paper;
+  these DOIs can then be incorporated into the final version, together
+  with the remaining DOIs that need to be found at DBLP or the publisher's web pages.}
+the second method {\itshape Search on article title}, only using the {\bfseries
+surname} of the first-listed author, works best.
+Other places to find DOIs are DBLP and the response pages for cited
+papers (maintained by their publishers).
+
+\paragraph{The bibtex fields {\ttfamily eprint} and {\ttfamily url}}
+
+Often an official publication is only available against payment. However,
+as a courtesy to readers that do not wish to pay, the authors also
+make the paper available free of charge at a repository such as
+\url{arXiv.org}. In such a case, it is recommended to also refer and
+link to the URL of the response page of the paper in such a
+repository.  This can be done using the bibtex fields {\ttfamily eprint}
+or {\ttfamily url}.  The latter field should \textbf{not} be used
+to duplicate information that is also provided through {\ttfamily doi} or {\ttfamily eprint}.
+You can find archival-quality URLs for most recently published papers
+in DBLP, but please suppress repetition of DOI or {\ttfamily eprint} information though {\ttfamily url}.
+In fact, it is often useful to check your references against DBLP records anyway,
+or just find them there in the first place.
+
+\paragraph{Typesetting DOIs and URLs}
+
+When using {\LaTeX} rather than {\ttfamily pdflatex} to typeset your paper, by
+default no line breaks within long URLs are allowed. This leads often
+to very ugly output, that moreover is different from the output
+generated when using {\ttfamily pdflatex}. This problem is repaired when
+invoking \href{http://eptcs.web.cse.unsw.edu.au/breakurl.sty}
+{\ttfamily $\backslash$usepackage$\{$breakurl$\}$}: it allows line breaks
+within links and yield the same output as obtained by default with
+{\ttfamily pdflatex}.
+When invoking {\ttfamily pdflatex}, the package {\ttfamily breakurl} is ignored.
+
+The package {\ttfamily $\backslash$usepackage$\{$underscore$\}$} is
+recommended to deal with underscores in DOIs. This is not needed when
+using {\ttfamily $\backslash$usepackage$\{$breakurl$\}$} and not {\ttfamily pdflatex}.
+
+\paragraph{References to papers in the same EPTCS volume}
+
+To refer to another paper in the same volume as your own contribution,
+use a bibtex entry with
+\begin{center}
+  {\ttfamily series    = $\{\backslash$thisvolume$\{5\}\}$},
+\end{center}
+where 5 is the submission number of the paper you want to cite.
+You may need to contact the author, volume editors, or EPTCS staff to
+find that submission number; it becomes known (and unchangeable)
+as soon as the cited paper is first uploaded at EPTCS\@.
+Furthermore, omit the fields {\ttfamily publisher} and {\ttfamily volume}.
+Then in your main paper, you put something like:
+
+\noindent
+{\small \ttfamily $\backslash$providecommand$\{\backslash$thisvolume$\}$[1]$\{$this
+  volume of EPTCS, Open Publishing Association$\}$}
+
+\noindent
+This acts as a placeholder macro-expansion until EPTCS software adds
+something like
+
+\noindent
+{\small \ttfamily $\backslash$newcommand$\{\backslash$thisvolume$\}$[1]%
+  $\{\{\backslash$eptcs$\}$ 157$\backslash$opa, pp 45--56, doi:\dots$\}$},
+
+\noindent
+where the relevant numbers are pulled out of the database at publication time.
+Here the newcommand wins from the providecommand, and {\ttfamily \small $\backslash$eptcs}
+resp.\ {\ttfamily \small $\backslash$opa} expand to
+
+\noindent
+{\small \ttfamily $\backslash$sl Electronic Proceedings in Theoretical Computer Science} \hfill and\\
+{\small \ttfamily , Open Publishing Association} \hfill .
+
+\noindent
+Hence putting {\small \ttfamily $\backslash$def$\backslash$opa$\{\}$} in
+your paper suppresses the addition of a publisher upon expansion of the citation by EPTCS\@.
+An optional argument like
+\begin{center}
+  {\ttfamily series    = $\{\backslash$thisvolume[EPTCS]$\{5\}\}$},
+\end{center}
+overwrites the value of {\ttfamily \small $\backslash$eptcs}.
+
+\nocite{*}
+\bibliographystyle{eptcs}
+\bibliography{refs}
+\end{document}

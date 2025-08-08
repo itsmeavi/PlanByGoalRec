@@ -1,0 +1,34 @@
+
+Take any vocabulary $V = \{p_1, \dots p_{2n}\}$ with this ordering fixed.
+Consider formula
+\[ (p_1 \land p_{n+1} ) \lor \ldots \lor (p_n \land p_{n+n}) \]
+Let $\pi := ? \beta$.
+Then we have $s \xrightarrow{\pi} t $
+iff $s = t$ and $s \vDash \beta$.
+
+The BDD $\tr'(\pi)$ 
+
+
+% \malvin{Question for Gregor: Are there QBF for which computing the equivalent BDD (which must be $\top$ or $\bot$) is not in PSPACE ?}
+% \avijeet{If a decision problem is on or above NPTIME but always above PTIME, then calculating entire BDD or any solution space for that matter will not give PSPACE algorithm. Because, 1. If it is above NP, it means it does not have a polynomial size witness to its yes/no answer. But it might be in PSPACE if there is a way to verify or find it without storing the entire certificate. 2. If it is in NPTIME but above PTIME, it means to find it is hard, but can be done without storing the entire search space.} 
+
+% \avijeet{Hence in short, in both these cases non-determinism plays a huge role. For example, there are boolean formulas $\phi$ whose BDD is exponentially large, if we quantify all its variables using forall, and we give an QBF algo using building the entire BDD, it cannot be in PSPACE. One has to apply non-determinism here for every evaluation, store what was evaluated and move on reusing the space for previous evaluation.}
+
+
+
+
+
+
+% Firstly, the correctness of the translation is proved in \Cref{thm:Correcttranslationbddtomp}. For each case of translation in Definition~\ref{def:tr}, it takes constant time/space per operators in mental programs and linear time/space per variables in the vocabulary. Therefore, the translation is a polynomial time/space reduction. This also implies that symbolic model checking (using BDD) is PSPACE-hard.
+%\haitian{Is this correct?}
+%\malvin{It seems NOT.
+%There is a formula $\beta$ for which the BDD must be large and thus $\tr(\beta?)$ must be large no matter how $\tr$ is defined.}
+%TODO: insert reference from Gregor here: Any BDD saying ``we have a valid permutation'' has $2^\frac{n}{2}$ nodes.
+
+Thesis, page 22 and following. Theorem 4.2
+\url{http://web.cecs.pdx.edu/~whung/papers/thesis.pdf}
+This is the workshop version
+\url{http://web.cecs.pdx.edu/~whung/papers/symmetry.pdf}
+but it does not contain the proof and only refers back to the thesis.
+
+\malvin{I sent this to Eshel and he came back with a good question: What is actually the number of variables here for the permutation example? If it is $2^{N \log N}$ and all those are mentioned in a formula then a BDD of size $2^{\frac{N}{2}}$ is not sufficiently larger, right?}
