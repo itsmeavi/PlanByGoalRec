@@ -8,10 +8,7 @@
 
 \maketitle
 
-% LORI: March 10 \url{http://www.golori.org/lori2025}
-% LIMIT: 12 pages + 1 page references
 
-% \bigskip
 \section{Working Example}
 Consider two robots $1, 2$ in a warehouse. There are three rooms in the warehouse $A, B, C$, all of them attached to a common hall. One can only enter every other room via the common hall. 
 
@@ -43,6 +40,15 @@ Initially, both the robots are in room $C$ with two boxes $B_1, B_2$ in the same
     \draw (g1) edge node[above] {$1, 2$} (g2);
 \end{tikzpicture}
 \subsection{Action model}
+\begin{definition}
+    The action model is also based on the usual DEL-like action models. Here $\Sigma$ is the list of all events.
+    \begin{itemize}
+        \item $\Sigma$ finite set of all events.
+        \item $\sim_i\subseteq\Sigma$ is the indistinguishability relation of agent $i$.
+        \item $pre:\Sigma\rightarrow\LL_K$ is the precondition formula for each event.
+        \item $post:\Sigma\times\cP\rightarrow\{\top,\bot\}$ is the post-condition.
+    \end{itemize}
+\end{definition}
 \begin{tikzpicture}
     \node[rectNode] (b11a) {$\ldiaarg{B_{1C}, B_{1A}}$};
     \node[rectNode] (b11b) at (4,0) {$\ldiaarg{B_{1C}, B_{1B}}$};
